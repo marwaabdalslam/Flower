@@ -1,0 +1,23 @@
+﻿@model FlowerShop.Models.Category
+
+@{
+    ViewData["Title"] = "حذف الفئة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>هل أنت متأكد أنك تريد حذف الفئة "@Model.Name"؟</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">اسم الفئة</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">الفئة الرئيسية (ParentId)</dt>
+    <dd class="col-sm-9">@((Model.ParentId != null) ? Model.ParentId.ToString() : "لا توجد")</dd>
+</dl>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+</form>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FlowerShop.Models.Category>
+
+@{
+    ViewData["Title"] = "قائمة الفئات";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة فئة جديدة</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>اسم الفئة</th>
+            <th>الفئة الرئيسية (ParentId)</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@(category.ParentId != null ? category.ParentId.ToString() : "لا توجد")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-info btn-sm">تفاصيل</a>
+                    <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-sm">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

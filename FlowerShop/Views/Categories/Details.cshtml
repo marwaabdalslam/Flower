@@ -1,0 +1,20 @@
+﻿@model FlowerShop.Models.Category
+
+@{
+    ViewData["Title"] = "تفاصيل الفئة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">اسم الفئة</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">الفئة الرئيسية (ParentId)</dt>
+    <dd class="col-sm-9">@((Model.ParentId != null) ? Model.ParentId.ToString() : "لا توجد")</dd>
+</dl>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">تعديل</a>
+    <a asp-action="Index" class="btn btn-secondary">رجوع للقائمة</a>
+</p>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FlowerShop.Models.Product>
+
+@{
+    ViewData["Title"] = "قائمة الزهور";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة زهرة جديدة</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>اسم الزهرة</th>
+            <th>الوصف</th>
+            <th>السعر</th>
+            <th>الكمية المتوفرة</th>
+            <th>الفئة</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.StockQty</td>
+                <td>@(product.CategoryId != null ? product.CategoryId.ToString() : "غير محدد")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-info btn-sm">تفاصيل</a>
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning btn-sm">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
